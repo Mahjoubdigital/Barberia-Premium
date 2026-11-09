@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbería Premium | Tarjeta Bio</title>
+<meta name="description" content="Barbería Premium — Marruecos. Cortes, fades y afeitados profesionales. Presupuesto gratis por WhatsApp.">
+<meta name="theme-color" content="#f6f7f9">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Jost:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#181410;--ink-2:#241d17;--gold:#c0955e;--gold-2:#a87f4a;
+  --bg:#f6f7f9;--muted:#5b6470;--muted-dark:#c9c2b8;--white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:56px 16px 44px;color:var(--ink)}
+html[lang="ar"] body{font-family:'Cairo','Jost',sans-serif}
+svg{flex-shrink:0}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+
+.lang-flags{position:absolute;top:16px;right:16px;display:flex;gap:8px}
+.lang-flags button{border:none;background:none;padding:0;cursor:pointer;border-radius:4px;overflow:hidden;opacity:.55;transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.lang-flags button:hover{opacity:.9;transform:translateY(-2px)}
+.lang-flags button.active{opacity:1;outline:2px solid var(--ink);outline-offset:1px}
+.lang-flags img{width:28px;height:20px;object-fit:cover;display:block}
+[dir="rtl"] .lang-flags{right:auto;left:16px}
+
+.bio{width:min(500px,100%);display:flex;flex-direction:column;align-items:center;text-align:center}
+.bio > *{animation:up .55s ease both}
+.bio > *:nth-child(1){animation-delay:.03s}.bio > *:nth-child(2){animation-delay:.08s}
+.bio > *:nth-child(3){animation-delay:.13s}.bio > *:nth-child(4){animation-delay:.18s}
+.bio > *:nth-child(5){animation-delay:.23s}.bio > *:nth-child(6){animation-delay:.28s}
+.bio > *:nth-child(7){animation-delay:.33s}.bio > *:nth-child(8){animation-delay:.38s}
+.bio > *:nth-child(9){animation-delay:.43s}.bio > *:nth-child(10){animation-delay:.48s}
+.bio > *:nth-child(11){animation-delay:.53s}.bio > *:nth-child(12){animation-delay:.58s}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.avatar{width:118px;height:118px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 8px 26px rgba(0,0,0,.16)}
+.bio-name{font:700 26px 'Oswald';margin-top:18px;color:var(--ink);letter-spacing:.02em}
+.bio-role{font-weight:700;font-size:14px;margin-top:8px;color:var(--ink)}
+.bio-desc{color:var(--muted);font-size:14px;margin-top:6px;max-width:430px;line-height:1.65}
+.bio-desc strong{color:var(--ink)}
+
+.quick-row{display:flex;gap:14px;margin-top:28px;width:100%}
+.quick{position:relative;flex:1;height:56px;background:var(--ink);border-radius:10px;display:grid;place-items:center;color:var(--gold);transition:.25s;box-shadow:0 5px 16px rgba(24,20,16,.25);border:none;cursor:pointer}
+.quick:hover{transform:translateY(-3px);background:var(--ink-2)}
+.chat-badge{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:var(--gold);border:2px solid var(--bg);border-radius:50%}
+[dir="rtl"] .chat-badge{right:auto;left:-4px}
+
+.acc{width:100%;background:var(--ink);border-radius:10px;overflow:hidden;margin-top:16px;box-shadow:0 5px 16px rgba(24,20,16,.22)}
+.acc-head{width:100%;display:flex;align-items:center;gap:12px;padding:17px 18px;background:transparent;border:none;color:var(--white);cursor:pointer;font:600 14.5px 'Jost';text-align:start;transition:background .25s}
+.acc-head:hover{background:var(--ink-2)}
+.acc-head .ico{color:var(--gold)}
+.acc-head .chev{margin-left:auto;color:var(--gold);transition:transform .35s}
+[dir="rtl"] .acc-head .chev{margin-left:0;margin-right:auto}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-content{padding:16px 18px 18px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted-dark);font-size:14px;line-height:1.7;text-align:start}
+[dir="rtl"] .acc-content{text-align:right}
+.inspo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 18px 18px;border-top:1px solid rgba(255,255,255,.08)}
+.inspo-grid img{width:100%;height:120px;object-fit:cover;border-radius:8px;transition:.3s}
+.inspo-grid img:hover{transform:scale(1.04)}
+
+.carousel{width:100%;margin-top:18px;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.15);aspect-ratio:7/5;background:#ddd}
+.car-track{display:flex;height:100%;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.car-track img{width:100%;height:100%;object-fit:cover;flex-shrink:0}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(24,20,16,.45);color:#fff;border:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:.25s;backdrop-filter:blur(2px)}
+.car-btn:hover{background:var(--gold)}
+.car-prev{left:10px}.car-next{right:10px}
+.car-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:7px;justify-content:center}
+.car-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.55);cursor:pointer;padding:0;transition:.25s}
+.car-dots button.active{background:var(--gold);transform:scale(1.3)}
+
+.video-card{position:relative;width:100%;margin-top:16px;border-radius:12px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 10px 30px rgba(0,0,0,.15);border:none;padding:0;cursor:pointer;background:#000}
+.video-card img{width:100%;height:100%;object-fit:cover;opacity:.92;transition:.4s}
+.video-card:hover img{opacity:.75;transform:scale(1.03)}
+.v-wm{position:absolute;top:12px;left:14px;color:#fff;font:600 12.5px 'Jost';letter-spacing:.06em;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+[dir="rtl"] .v-wm{left:auto;right:14px}
+.v-play{position:absolute;inset:0;margin:auto;width:66px;height:46px;background:var(--gold);border-radius:10px;display:grid;place-items:center;color:#fff;transition:.25s;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.video-card:hover .v-play{transform:scale(1.1);background:var(--gold-2)}
+
+.links{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:22px}
+.link-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--ink);color:var(--white);padding:17px 18px;border-radius:10px;font:600 14.5px 'Jost';transition:.25s;box-shadow:0 5px 16px rgba(24,20,16,.22)}
+.link-btn .ico{color:var(--gold)}
+.link-btn:hover{transform:translateY(-2px);background:var(--ink-2)}
+
+.cta-wa{margin-top:20px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--ink);font:700 14.5px 'Jost';letter-spacing:.06em;text-transform:uppercase;padding:18px;border-radius:10px;transition:.25s;box-shadow:0 8px 24px rgba(192,149,94,.45)}
+.cta-wa:hover{transform:translateY(-2px);background:var(--gold-2);color:#fff}
+
+.divider{width:100%;border:none;border-top:2px solid var(--gold);margin-top:34px}
+.copy{color:#8a919c;font-size:12.5px;margin-top:18px;align-self:flex-start}
+
+.modal{position:fixed;inset:0;background:rgba(10,8,6,.88);display:grid;place-items:center;z-index:100;opacity:0;visibility:hidden;transition:.3s;padding:20px}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{width:min(760px,100%);aspect-ratio:16/9;background:#000;position:relative;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.modal-box video{width:100%;height:100%}
+.modal-close{position:absolute;top:10px;right:10px;z-index:2;background:rgba(0,0,0,.5);border:none;color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.modal-close:hover{background:var(--gold)}
+
+/* ============ ASISTENTE / CHAT ============ */
+.chat{position:fixed;right:18px;bottom:18px;z-index:150;width:min(390px,calc(100vw - 28px));height:min(580px,calc(100dvh - 120px));background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(24,20,16,.35);opacity:0;visibility:hidden;transform:translateY(16px) scale(.98);transition:.35s}
+.chat.open{opacity:1;visibility:visible;transform:none}
+[dir="rtl"] .chat{right:auto;left:18px}
+.chat-head{background:var(--ink);color:#fff;display:flex;align-items:center;gap:12px;padding:14px 16px}
+.chat-ava{width:40px;height:40px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#fff}
+.chat-titles{display:flex;flex-direction:column;line-height:1.3}
+.chat-titles b{font:600 14.5px 'Jost'}
+.chat-titles span{font-size:11.5px;color:var(--muted-dark);display:flex;align-items:center;gap:6px}
+.chat-titles span::before{content:'';width:7px;height:7px;background:#2ecc71;border-radius:50%}
+.chat-close{margin-left:auto;background:rgba(255,255,255,.12);border:none;color:#fff;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.chat-close:hover{background:var(--gold)}
+[dir="rtl"] .chat-close{margin-left:0;margin-right:auto}
+.chat-body{flex:1;overflow-y:auto;padding:16px 14px 8px;background:#faf8f4;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:84%;padding:10px 13px;border-radius:12px;font-size:13.8px;line-height:1.55;animation:msgIn .3s ease;white-space:normal}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{background:#fff;border:1px solid rgba(24,20,16,.08);color:var(--ink);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.user{background:var(--ink);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+[dir="rtl"] .msg.bot{border-radius:12px;border-bottom-right-radius:4px}
+[dir="rtl"] .msg.user{border-radius:12px;border-bottom-left-radius:4px}
+.msg a{color:var(--gold-2);font-weight:600;text-decoration:underline}
+.typing{display:flex;gap:4px;padding:12px 14px;align-self:flex-start;background:#fff;border:1px solid rgba(24,20,16,.08);border-radius:12px}
+.typing i{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 14px 12px;background:#faf8f4}
+.chips:empty{padding:0}
+.chip{border:1px solid var(--gold);color:var(--gold-2);background:#fff;border-radius:999px;padding:7px 14px;font:600 12px 'Jost';cursor:pointer;transition:.2s}
+.chip:hover{background:var(--gold);color:#fff}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(24,20,16,.08);background:#fff}
+.chat-input input{flex:1;min-width:0;border:1px solid rgba(24,20,16,.15);background:#faf8f4;border-radius:999px;padding:11px 16px;font:400 13.5px 'Jost';outline:none;transition:.2s}
+.chat-input input:focus{border-color:var(--gold)}
+.chat-send{width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;color:#fff;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.chat-send:hover{background:var(--gold-2)}
+[dir="rtl"] .chat-send svg{transform:scaleX(-1)}
+
+@media(max-width:420px){.quick-row{gap:10px}}
+</style>
+</head>
+<body>
+
+<div class="lang-flags" role="group" aria-label="Idioma">
+  <button data-lang="ar" title="العربية"><img src="https://flagcdn.com/w40/ma.png" alt="العربية"></button>
+  <button data-lang="fr" title="Français"><img src="https://flagcdn.com/w40/fr.png" alt="Français"></button>
+  <button data-lang="es" class="active" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="Español"></button>
+</div>
+
+<main class="bio">
+  <img class="avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Barbería Premium" onerror="this.onerror=null;this.src='https://picsum.photos/300?random=1'">
+  <h1 class="bio-name">Barbería Premium</h1>
+  <p class="bio-role" data-i18n="role">Barberos profesionales y estilistas en Marruecos.</p>
+  <p class="bio-desc" data-i18n="desc">Especialistas en cortes, fades y afeitados clásicos. Calidad, profesionalidad y acabados impecables. <strong>Presupuesto gratuito y cita puntual.</strong></p>
+
+  <div class="quick-row">
+    <!-- 🤖 BOTÓN DEL ASISTENTE -->
+    <button class="quick" id="chatOpen" aria-label="Asistente virtual">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span class="chat-badge" id="chatBadge"></span>
+    </button>
+    <a class="quick" href="tel:+212690157092" aria-label="Teléfono">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <a class="quick" href="https://wa.seo-local.click/land/services-marketing-numerique" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <div class="acc" id="accAbout">
+    <button class="acc-head" aria-expanded="false">
+      <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span data-i18n="about.btn">Sobre Barbería Premium</span>
+      <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="acc-body"><p class="acc-content" data-i18n="about.text">Desde 2004 combinamos la tradición de la barbería clásica con las técnicas modernas. Un equipo de maestros barberos apasionados por el detalle en cada corte, cada fade y cada afeitado.</p></div>
+  </div>
+
+  <div class="carousel" id="carousel">
+    <div class="car-track" id="carTrack">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=80" alt="Barbería" onerror="this.onerror=null;this.src='https://picsum.photos/900/640?random=11'">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=80" alt="Fade" onerror="this.onerror=null;this.src='https://picsum.photos/900/640?random=12'">
+      <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=900&q=80" alt="Corte" onerror="this.onerror=null;this.src='https://picsum.photos/900/640?random=13'">
+      <img src="https://images.unsplash.com/photo-1521322800607-8c38375e104e?auto=format&fit=crop&w=900&q=80" alt="Interior" onerror="this.onerror=null;this.src='https://picsum.photos/900/640?random=14'">
+    </div>
+    <button class="car-btn car-prev" id="carPrev" aria-label="Anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="car-btn car-next" id="carNext" aria-label="Siguiente"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="car-dots" id="carDots"></div>
+  </div>
+
+  <div class="acc" id="accZone">
+    <button class="acc-head" aria-expanded="false">
+      <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      <span data-i18n="zone.btn">Zona de atención</span>
+      <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="acc-body"><p class="acc-content" data-i18n="zone.text">Tetuán, Martil, Cabo Negro, Tánger y alrededores. También nos desplazamos para eventos y sesiones privadas.</p></div>
+  </div>
+
+  <div class="acc" id="accInspo">
+    <button class="acc-head" aria-expanded="false">
+      <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <span data-i18n="inspo.btn">Inspiración</span>
+      <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <div class="inspo-grid">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=400&q=80" alt="1" onerror="this.onerror=null;this.src='https://picsum.photos/400/300?random=21'">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=400&q=80" alt="2" onerror="this.onerror=null;this.src='https://picsum.photos/400/300?random=22'">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400&q=80" alt="3" onerror="this.onerror=null;this.src='https://picsum.photos/400/300?random=23'">
+        <img src="https://images.unsplash.com/photo-1587909209111-5097ee578ec3?auto=format&fit=crop&w=400&q=80" alt="4" onerror="this.onerror=null;this.src='https://picsum.photos/400/300?random=24'">
+      </div>
+    </div>
+  </div>
+
+  <button class="video-card" id="videoBtn" aria-label="Ver vídeo">
+    <img src="https://images.unsplash.com/photo-1521322800607-8c38375e104e?auto=format&fit=crop&w=1000&q=80" alt="Vídeo" onerror="this.onerror=null;this.src='https://picsum.photos/1000/620?random=30'">
+    <span class="v-wm">Barbería Premium</span>
+    <span class="v-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 21 12 6 21"/></svg></span>
+  </button>
+
+  <nav class="links">
+    <a class="link-btn" href="index.html"><!-- ⬅️ tu web principal -->
+      <span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+      <span data-i18n="l.web">Sitio web</span>
+    </a>
+    <!-- ⬇️ Sustituye los "#" por tus URLs reales -->
+    <a class="link-btn" href="#" target="_blank" rel="noopener"><span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></span>Instagram</a>
+    <a class="link-btn" href="#" target="_blank" rel="noopener"><span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.92 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#181410"/></svg></span>YouTube</a>
+    <a class="link-btn" href="#" target="_blank" rel="noopener"><span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a>
+    <a class="link-btn" href="#" target="_blank" rel="noopener"><span class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></span>TikTok</a>
+  </nav>
+
+  <a class="cta-wa" href="https://wa.seo-local.click/land/services-marketing-numerique" target="_blank" rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span data-i18n="cta">Presupuesto gratuito por WhatsApp</span>
+  </a>
+
+  <hr class="divider">
+  <p class="copy">Copyright © 2026 Barbería Premium</p>
+</main>
+
+<!-- Modal vídeo -->
+<div class="modal" id="videoModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <video id="promoVideo" controls poster="https://images.unsplash.com/photo-1521322800607-8c38375e104e?auto=format&fit=crop&w=1200&q=80">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4"><!-- ⬅️ tu vídeo -->
+    </video>
+  </div>
+</div>
+
+<!-- 🤖 WIDGET DEL ASISTENTE -->
+<div class="chat" id="chat" role="dialog" aria-label="Asistente">
+  <div class="chat-head">
+    <span class="chat-ava"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
+    <span class="chat-titles"><b id="chatName">Asistente Premium</b><span id="chatStatus">En línea</span></span>
+    <button class="chat-close" id="chatClose" aria-label="Cerrar chat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chips" id="chatChips"></div>
+  <form class="chat-input" id="chatForm">
+    <input id="chatText" autocomplete="off" placeholder="Escribe tu pregunta…">
+    <button class="chat-send" type="submit" aria-label="Enviar"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </form>
+</div>
+
+<script>
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const WA_NUMBER = '212690157092'; /* ⬅️ tu número de WhatsApp */
+
+/* ================= i18n página ================= */
+const I18N = {
+  es: {"doc.title":"Barbería Premium | Tarjeta Bio","role":"Barberos profesionales y estilistas en Marruecos.","desc":"Especialistas en cortes, fades y afeitados clásicos. Calidad, profesionalidad y acabados impecables. <strong>Presupuesto gratuito y cita puntual.</strong>","about.btn":"Sobre Barbería Premium","about.text":"Desde 2004 combinamos la tradición de la barbería clásica con las técnicas modernas. Un equipo de maestros barberos apasionados por el detalle en cada corte, cada fade y cada afeitado.","zone.btn":"Zona de atención","zone.text":"Tetuán, Martil, Cabo Negro, Tánger y alrededores. También nos desplazamos para eventos y sesiones privadas.","inspo.btn":"Inspiración","l.web":"Sitio web","cta":"Presupuesto gratuito por WhatsApp"},
+  fr: {"doc.title":"Barberie Premium | Carte Bio","role":"Barbiers professionnels et stylistes au Maroc.","desc":"Spécialistes des coupes, fades et rasages classiques. Qualité, professionnalisme et finitions impeccables. <strong>Devis gratuit et rendez-vous ponctuel.</strong>","about.btn":"À propos de Barbería Premium","about.text":"Depuis 2004, nous allions la tradition de la barberie classique aux techniques modernes. Une équipe de maîtres barbiers passionnés par le détail de chaque coupe, chaque fade et chaque rasage.","zone.btn":"Zone d'intervention","zone.text":"Tétouan, Martil, Cabo Negro, Tanger et environs. Nous nous déplaçons aussi pour événements et sessions privées.","inspo.btn":"Inspiration","l.web":"Site web","cta":"Devis gratuit sur WhatsApp"},
+  ar: {"doc.title":"حلاقة بريميوم | بطاقة تعريف","role":"حلاقون محترفون ومصففون في المغرب.","desc":"متخصصون في القصات والفيد والحلاقة الكلاسيكية. جودة واحترافية ولمسات متقنة. <strong>عرض سعر مجاني وموعد في الوقت المحدد.</strong>","about.btn":"عن حلاقة بريميوم","about.text":"منذ 2004 نمزج تقاليد الحلاقة الكلاسيكية بالتقنيات الحديثة. فريق من الحلاقين الخبراء الشغوفين بالتفاصيل في كل قصة وفيد وحلاقة.","zone.btn":"منطقة التدخل","zone.text":"تطوان، مرتيل، كابو نيغرو، طنجة والمناطق المجاورة. نتنقل أيضاً للمناسبات والجلسات الخاصة.","inspo.btn":"إلهام","l.web":"الموقع الإلكتروني","cta":"عرض سعر مجاني عبر واتساب"}
+};
+
+/* ================= i18n ASISTENTE ================= */
+const BOT = {
+  es: {
+    name:"Asistente Premium", online:"En línea", ph:"Escribe tu pregunta…",
+    greeting:"¡Hola! 👋 Soy el asistente de Barbería Premium. Puedo darte información o reservar tu cita. ¿Qué necesitas?",
+    menu:["Servicios","Precios","Horarios","Ubicación","Reservar cita","WhatsApp"],
+    services:"Nuestros servicios:\n• Corte Signature — 25 $\n• Esculpido de Barba — 18 $\n• Afeitado Toalla Caliente — 30 $\n• Niños & Estudiantes — 15 $\n• Servicio Luxury Completo — 60 $",
+    prices:"Tarifa completa:\n• Lavado y Corte — 20 $\n• Afeitado con Navaja — 30 $\n• Cabello Largo — 45 $\n• Niños (lavado y corte) — 25 $\n• Lavado y Corte de Barba — 10 $\n• Barba Corta — 15 $\n• Barba Larga — 25 $\n• Luxury Completo — 60 $",
+    hours:"Horario:\nLunes a Viernes: 10:00–20:00\nSábado: 10:00–18:00\nDomingo: Cerrado",
+    location:"Estamos en Tetuán, Marruecos 📍 y atendemos también en Martil, Cabo Negro y Tánger. ¿Te reservo una cita?",
+    contact:"Puedes llamarnos al +212 690 157 092 o escribir a contact@mahjoub.click. También tienes WhatsApp directo en los botones de arriba 💬",
+    bookIntro:"¡Perfecto! Vamos a reservar tu cita ✂️. ¿Qué servicio necesitas?",
+    serviceChips:["Corte Signature","Esculpido de Barba","Afeitado Toalla Caliente","Niños & Estudiantes","Luxury Completo"],
+    barberQ:"¿Con qué barbero prefieres?",
+    barberChips:["Philip Brown","Stephen Martin","Dennis Dan","Cualquiera"],
+    dateQ:"¿Qué día te viene bien? Pulsa una opción o escribe una fecha.",
+    dateChips:["Hoy","Mañana","Este sábado"],
+    timeQ:"¿A qué hora? (Abrimos de 10:00 a 20:00)",
+    timeChips:["10:00","12:00","16:00","18:00"],
+    nameQ:"¿A nombre de quién hago la reserva?",
+    phoneQ:"Genial, {name}. ¿Un teléfono de contacto?",
+    summary:"Resumen de tu cita:\n• Servicio: {service}\n• Barbero: {barber}\n• Día: {date}\n• Hora: {time}\n• Nombre: {name}\n• Teléfono: {phone}\n¿Confirmo la reserva?",
+    confirmChips:["Confirmar","Cancelar"],
+    confirmed:"¡Cita reservada! ✅ Te confirmaremos por teléfono. Si quieres, envíanosla también por WhatsApp:",
+    waBtn:"Enviar por WhatsApp",
+    cancelled:"Sin problema, reserva cancelada. ¿Algo más en lo que pueda ayudarte?",
+    fallback:"No estoy seguro de haberte entendido 🤔. Elige una opción del menú o escríbeme por ejemplo: “precios”, “horario” o “reservar”.",
+    keys:{book:/reserv|cita|agendar/, prices:/precio|tarifa|cu[aá]nto/, services:/servicio|corte|fade|afeitado|barba/, hours:/horario|hora|abren|cierran/, location:/ubic|direcc|zona|d[oó]nde|est[aá]n/, contact:/contact|tel[eé]fono|llamar|mail|whatsapp/, greet:/hola|buenas|buenos/}
+  },
+  fr: {
+    name:"Assistant Premium", online:"En ligne", ph:"Écrivez votre question…",
+    greeting:"Bonjour ! 👋 Je suis l'assistant de Barbería Premium. Je peux vous informer ou réserver votre rendez-vous. Que souhaitez-vous ?",
+    menu:["Services","Tarifs","Horaires","Adresse","Prendre rendez-vous","WhatsApp"],
+    services:"Nos services :\n• Coupe Signature — 25 $\n• Sculptage de Barbe — 18 $\n• Rasage Serviette Chaude — 30 $\n• Enfants & Étudiants — 15 $\n• Service Luxury Complet — 60 $",
+    prices:"Tarifs complets :\n• Lavage et Coupe — 20 $\n• Rasage au Rasoir — 30 $\n• Cheveux Longs — 45 $\n• Enfants (lavage et coupe) — 25 $\n• Lavage et Coupe de Barbe — 10 $\n• Barbe Courte — 15 $\n• Barbe Longue — 25 $\n• Luxury Complet — 60 $",
+    hours:"Horaires :\nLundi–Vendredi : 10h00–20h00\nSamedi : 10h00–18h00\nDimanche : Fermé",
+    location:"Nous sommes à Tétouan, Maroc 📍 et intervenons aussi à Martil, Cabo Negro et Tanger. Je vous réserve un créneau ?",
+    contact:"Appelez-nous au +212 690 157 092 ou écrivez à contact@mahjoub.click. Vous avez aussi WhatsApp via les boutons ci-dessus 💬",
+    bookIntro:"Parfait ! Réservons votre rendez-vous ✂️. Quel service souhaitez-vous ?",
+    serviceChips:["Coupe Signature","Sculptage de Barbe","Rasage Serviette Chaude","Enfants & Étudiants","Luxury Complet"],
+    barberQ:"Avec quel barbier préférez-vous ?",
+    barberChips:["Philip Brown","Stephen Martin","Dennis Dan","Indifférent"],
+    dateQ:"Quel jour vous arrange ? Choisissez ou écrivez une date.",
+    dateChips:["Aujourd'hui","Demain","Samedi"],
+    timeQ:"À quelle heure ? (Ouvert de 10h00 à 20h00)",
+    timeChips:["10:00","12:00","16:00","18:00"],
+    nameQ:"Au nom de qui puis-je réserver ?",
+    phoneQ:"Parfait, {name}. Un téléphone de contact ?",
+    summary:"Récapitulatif :\n• Service : {service}\n• Barbier : {barber}\n• Jour : {date}\n• Heure : {time}\n• Nom : {name}\n• Tél : {phone}\nJe confirme le rendez-vous ?",
+    confirmChips:["Confirmer","Annuler"],
+    confirmed:"Rendez-vous réservé ! ✅ Nous vous confirmerons par téléphone. Vous pouvez aussi l'envoyer sur WhatsApp :",
+    waBtn:"Envoyer sur WhatsApp",
+    cancelled:"Pas de problème, réservation annulée. Autre chose ?",
+    fallback:"Je ne suis pas sûr d'avoir compris 🤔. Choisissez une option ou écrivez par ex. « tarifs », « horaires » ou « rendez-vous ».",
+    keys:{book:/rendez|r[eé]server|rdv/, prices:/tarif|prix|combien/, services:/service|coupe|fade|rasage|barbe/, hours:/horaire|heure|ouvert|ferm/, location:/adresse|o[uù]|zone|lieu/, contact:/contact|t[eé]l[eé]phone|appel|mail|whatsapp/, greet:/bonjour|salut|bonsoir/}
+  },
+  ar: {
+    name:"مساعد بريميوم", online:"متصل", ph:"اكتب سؤالك…",
+    greeting:"مرحباً! 👋 أنا مساعد حلاقة بريميوم. يمكنني إعطاؤك المعلومات أو حجز موعدك. ماذا تحتاج؟",
+    menu:["الخدمات","الأسعار","أوقات العمل","الموقع","حجز موعد","واتساب"],
+    services:"خدماتنا:\n• قصة سيغنتشر — 25$\n• تهذيب اللحية — 18$\n• حلاقة بمنشفة ساخنة — 30$\n• الأطفال والطلاب — 15$\n• خدمة لوكسري كاملة — 60$",
+    prices:"قائمة الأسعار:\n• غسل وقص — 20$\n• حلاقة بالموس — 30$\n• شعر طويل — 45$\n• أطفال (غسل وقص) — 25$\n• غسل وقص اللحية — 10$\n• لحية قصيرة — 15$\n• لحية طويلة — 25$\n• لوكسري كامل — 60$",
+    hours:"أوقات العمل:\nالإثنين–الجمعة: 10:00–20:00\nالسبت: 10:00–18:00\nالأحد: مغلق",
+    location:"نحن في تطوان، المغرب 📍 ونخدم أيضاً مرتيل وكابو نيغرو وطنجة. أحجز لك موعداً؟",
+    contact:"اتصل بنا على +212 690 157 092 أو راسلنا على contact@mahjoub.click. يتوفر أيضاً واتساب عبر الأزرار بالأعلى 💬",
+    bookIntro:"ممتاز! لنحجز موعدك ✂️. أي خدمة تحتاج؟",
+    serviceChips:["قصة سيغنتشر","تهذيب اللحية","حلاقة بمنشفة ساخنة","الأطفال والطلاب","لوكسري كامل"],
+    barberQ:"مع أي حلاق تفضل؟",
+    barberChips:["Philip Brown","Stephen Martin","Dennis Dan","أي حلاق"],
+    dateQ:"أي يوم يناسبك؟ اختر أو اكتب تاريخاً.",
+    dateChips:["اليوم","غداً","السبت"],
+    timeQ:"في أي ساعة؟ (عملنا من 10:00 إلى 20:00)",
+    timeChips:["10:00","12:00","16:00","18:00"],
+    nameQ:"باسم من أحجز الموعد؟",
+    phoneQ:"تمام {name}. ما هو رقم هاتفك؟",
+    summary:"ملخص موعدك:\n• الخدمة: {service}\n• الحلاق: {barber}\n• اليوم: {date}\n• الساعة: {time}\n• الاسم: {name}\n• الهاتف: {phone}\nهل أؤكد الحجز؟",
+    confirmChips:["تأكيد","إلغاء"],
+    confirmed:"تم حجز الموعد! ✅ سنؤكد لك هاتفياً. يمكنك أيضاً إرساله عبر واتساب:",
+    waBtn:"إرسال عبر واتساب",
+    cancelled:"لا مشكلة، تم إلغاء الحجز. هل من شيء آخر؟",
+    fallback:"لم أفهم تماماً 🤔. اختر من القائمة أو اكتب مثلاً: «الأسعار»، «أوقات العمل» أو «حجز».",
+    keys:{book:/حجز|موعد/, prices:/سعر|أسعار|ثمن/, services:/خدمة|قص|فيد|حلاقة|لحية/, hours:/وقت|أوقات|دوام|مواعيد/, location:/عنوان|موقع|أين|منطقة/, contact:/تواصل|هاتف|اتصال|بريد|واتساب/, greet:/مرحبا|سلام|صباح|مساء/}
+  }
+};
+
+let curLang = localStorage.getItem('bp-lang') || 'es';
+const T = () => BOT[curLang] || BOT.es;
+
+/* ================= Motor del chat ================= */
+const chat = $('#chat'), chatBody = $('#chatBody'), chatChips = $('#chatChips'), chatInput = $('#chatText');
+let state = 'idle', booking = {}, openedOnce = false;
+
+function scrollChat(){ chatBody.scrollTop = chatBody.scrollHeight; }
+function addMsg(who, html){
+  const d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.innerHTML = html.replace(/\n/g, '<br>');
+  chatBody.appendChild(d); scrollChat();
+}
+function botSay(text, chips, delay = 650){
+  const t = document.createElement('div');
+  t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>';
+  chatBody.appendChild(t); scrollChat();
+  setTimeout(() => {
+    t.remove();
+    addMsg('bot', text);
+    setChips(chips || []);
+  }, delay);
+}
+function setChips(list){
+  chatChips.innerHTML = '';
+  (list || []).forEach(label => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = label;
+    b.onclick = () => handleUser(label);
+    chatChips.appendChild(b);
+  });
+}
+function menu(){ state = 'idle'; return T().menu; }
+
+function fmtDate(v){
+  const loc = {es:'es-ES', fr:'fr-FR', ar:'ar-MA'}[curLang];
+  const d = new Date();
+  if (v === 'tomorrow') d.setDate(d.getDate() + 1);
+  if (v === 'saturday'){ const diff = (6 - d.getDay() + 7) % 7 || 7; d.setDate(d.getDate() + diff); }
+  return d.toLocaleDateString(loc, {weekday:'long', day:'numeric', month:'long'});
+}
+function waLink(text){ return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`; }
+
+function classify(txt){
+  const k = T().keys;
+  if (k.book.test(txt)) return 'book';
+  if (k.prices.test(txt)) return 'prices';
+  if (k.services.test(txt)) return 'services';
+  if (k.hours.test(txt)) return 'hours';
+  if (k.location.test(txt)) return 'location';
+  if (k.contact.test(txt)) return 'contact';
+  if (k.greet.test(txt)) return 'greet';
+  return null;
+}
+
+function handleUser(raw){
+  const txt = raw.trim();
+  if (!txt) return;
+  addMsg('user', esc(txt));
+  chatInput.value = '';
+  const t = T();
+  const low = txt.toLowerCase();
+
+  switch (state){
+    case 'await_service':
+      booking.service = txt; state = 'await_barber';
+      botSay(t.barberQ, t.barberChips); return;
+    case 'await_barber':
+      booking.barber = txt; state = 'await_date';
+      botSay(t.dateQ, t.dateChips); return;
+    case 'await_date': {
+      const i = t.dateChips.indexOf(txt);
+      booking.date = i === 0 ? fmtDate('today') : i === 1 ? fmtDate('tomorrow') : i === 2 ? fmtDate('saturday') : txt;
+      state = 'await_time';
+      botSay(t.timeQ, t.timeChips); return;
+    }
+    case 'await_time': {
+      let h = txt.replace('h', ':');
+      if (/^\d{1,2}$/.test(h)) h += ':00';
+      if (!/^\d{1,2}:\d{2}$/.test(h)){ botSay(t.timeQ, t.timeChips); return; }
+      booking.time = h; state = 'await_name';
+      botSay(t.nameQ); return;
+    }
+    case 'await_name':
+      if (txt.length < 2){ botSay(t.nameQ); return; }
+      booking.name = txt; state = 'await_phone';
+      botSay(t.phoneQ.replace('{name}', esc(booking.name))); return;
+    case 'await_phone':
+      if (!/^[+\d][\d\s-]{6,}$/.test(txt)){ botSay(t.phoneQ.replace('{name}', esc(booking.name))); return; }
+      booking.phone = txt; state = 'await_confirm';
+      botSay(t.summary
+        .replace('{service}', esc(booking.service)).replace('{barber}', esc(booking.barber))
+        .replace('{date}', esc(booking.date)).replace('{time}', esc(booking.time))
+        .replace('{name}', esc(booking.name)).replace('{phone}', esc(booking.phone)), t.confirmChips);
+      return;
+    case 'await_confirm': {
+      const yes = txt === t.confirmChips[0] || /confirm|s[ií]|yes|تأكيد/.test(low);
+      const no  = txt === t.confirmChips[1] || /cancel|no|annul|إلغاء/.test(low);
+      if (no){ state = 'idle'; booking = {}; botSay(t.cancelled, menu()); return; }
+      if (yes){
+        const waText = `📅 ${booking.date} ${booking.time} | ${booking.service} | ${booking.barber} | ${booking.name} | ${booking.phone}`;
+        state = 'idle';
+        botSay(t.confirmed + `\n<a href="${waLink(waText)}" target="_blank" rel="noopener">${t.waBtn} →</a>`, menu());
+        booking = {}; return;
+      }
+      botSay(t.summary
+        .replace('{service}', esc(booking.service)).replace('{barber}', esc(booking.barber))
+        .replace('{date}', esc(booking.date)).replace('{time}', esc(booking.time))
+        .replace('{name}', esc(booking.name)).replace('{phone}', esc(booking.phone)), t.confirmChips);
+      return;
+    }
+  }
+
+  /* Estado libre: menú / información */
+  const intent = classify(low);
+  if (intent === 'book'){ state = 'await_service'; botSay(t.bookIntro, t.serviceChips); return; }
+  if (intent === 'services'){ botSay(t.services, menu()); return; }
+  if (intent === 'prices'){ botSay(t.prices, menu()); return; }
+  if (intent === 'hours'){ botSay(t.hours, menu()); return; }
+  if (intent === 'location'){ botSay(t.location, menu()); return; }
+  if (intent === 'contact'){ botSay(t.contact, menu()); return; }
+  if (intent === 'greet'){ botSay(t.greeting, menu()); return; }
+  botSay(t.fallback, menu());
+}
+
+function greet(){ chatBody.innerHTML = ''; setChips([]); botSay(T().greeting, T().menu, 400); }
+function resetChat(){ state = 'idle'; booking = {}; if (openedOnce) greet(); }
+
+/* Abrir / cerrar */
+$('#chatOpen').onclick = () => {
+  chat.classList.add('open');
+  const badge = $('#chatBadge'); if (badge) badge.style.display = 'none';
+  if (!openedOnce){ openedOnce = true; greet(); }
+};
+$('#chatClose').onclick = () => chat.classList.remove('open');
+$('#chatForm').onsubmit = e => { e.preventDefault(); handleUser(chatInput.value); };
+
+/* ================= i18n apply ================= */
+function applyLang(l){
+  if (!I18N[l]) l = 'es';
+  curLang = l;
+  const d = I18N[l];
+  document.documentElement.lang = l;
+  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  document.title = d['doc.title'];
+  $$('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (d[k] != null) el.innerHTML = d[k]; });
+  $$('.lang-flags button').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+  localStorage.setItem('bp-lang', l);
+  /* textos del asistente */
+  $('#chatName').textContent = T().name;
+  $('#chatStatus').textContent = T().online;
+  chatInput.placeholder = T().ph;
+  resetChat();
+  positionCarousel();
+  $$('.acc.open .acc-body').forEach(b => b.style.maxHeight = b.scrollHeight + 'px');
+}
+$$('.lang-flags button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
+/* ================= Acordeones ================= */
+$$('.acc').forEach(acc => {
+  const head = acc.querySelector('.acc-head'), body = acc.querySelector('.acc-body');
+  head.addEventListener('click', () => {
+    const open = acc.classList.toggle('open');
+    head.setAttribute('aria-expanded', open);
+    body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
+  });
+});
+
+/* ================= Carrusel ================= */
+const track = $('#carTrack'), imgs = $$('#carTrack img'), dotsWrap = $('#carDots');
+let ci = 0, cTimer = null;
+imgs.forEach((_, i) => {
+  const b = document.createElement('button');
+  b.setAttribute('aria-label', 'Slide ' + (i+1));
+  b.onclick = () => { goC(i); restartC(); };
+  dotsWrap.appendChild(b);
+});
+const dots = $$('#carDots button');
+function positionCarousel(){
+  const sign = document.documentElement.dir === 'rtl' ? 1 : -1;
+  track.style.transform = `translateX(${sign * ci * 100}%)`;
+  dots.forEach((d,n) => d.classList.toggle('active', n === ci));
+}
+function goC(i){ ci = (i + imgs.length) % imgs.length; positionCarousel(); }
+$('#carNext').onclick = () => { goC(ci+1); restartC(); };
+$('#carPrev').onclick = () => { goC(ci-1); restartC(); };
+function restartC(){ if (cTimer) clearInterval(cTimer); cTimer = setInterval(() => goC(ci+1), 5000); }
+restartC();
+$('#carousel').addEventListener('mouseenter', () => cTimer && clearInterval(cTimer));
+$('#carousel').addEventListener('mouseleave', restartC);
+let sx = null;
+$('#carousel').addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+$('#carousel').addEventListener('touchend', e => {
+  if (sx === null) return;
+  const dx = e.changedTouches[0].clientX - sx;
+  const rtl = document.documentElement.dir === 'rtl';
+  if (Math.abs(dx) > 40) rtl ? goC(ci + (dx > 0 ? 1 : -1)) : goC(ci + (dx < 0 ? 1 : -1));
+  sx = null; restartC();
+}, {passive:true});
+
+/* ================= Modal vídeo ================= */
+const modal = $('#videoModal'), promo = $('#promoVideo');
+$('#videoBtn').onclick = () => modal.classList.add('open');
+$('#modalClose').onclick = () => { modal.classList.remove('open'); promo.pause(); };
+modal.onclick = e => { if (e.target === modal){ modal.classList.remove('open'); promo.pause(); } };
+document.addEventListener('keydown', e => { if (e.key === 'Escape'){ modal.classList.remove('open'); promo.pause(); } });
+
+/* ================= Init ================= */
+applyLang(curLang);
+</script>
+</body>
+</html>
